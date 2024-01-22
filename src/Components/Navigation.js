@@ -6,8 +6,10 @@ import DeliverooLogo from '../Assets/logo-teal.svg';
 import {
   InputBase,
   IconButton,
+  Button,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import PermIdentityAccountIcon from "@mui/icons-material/PermIdentityOutlined";
 
 
 const svgImageStyle = {
@@ -16,7 +18,17 @@ const svgImageStyle = {
   fill: "#00ccbc",
 };
 
+const AccountBtnStyles = {
+ 
+  borderWidth: "1px",
+  color: "black",
+  borderColor: "#e8ebeb",
+  textTransform: "none",
+  "&:hover": { borderWidth: "1px", borderColor: "#dbdbdb" },
+};
+
 const Navigation = () => {
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container style={{ paddingLeft: '8rem' }}>
@@ -66,6 +78,18 @@ const Navigation = () => {
               />
             </div>
              <Authentication/>
+
+             <Nav.Link >
+              <Button
+                  sx={AccountBtnStyles}
+                  variant="outlined"
+                  startIcon={
+                    <PermIdentityAccountIcon sx={{ color: "#00ccbc" }} />
+                  }
+                >
+                  Account
+                </Button>
+              </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
