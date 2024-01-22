@@ -61,13 +61,13 @@ const Footer = () => {
             <div className='more-info'>
                 <div className="socials">
                     <IconButton>
-                        <FacebookIcon color="secondary" />
+                        <FacebookIcon style={{ color: "#ffff" }} />
                     </IconButton>
                     <IconButton>
-                        <TwitterIcon color="secondary" />
+                        <TwitterIcon style={{ color: "#ffff" }} />
                     </IconButton>
                     <IconButton>
-                        <InstagramIcon color="secondary" />
+                        <InstagramIcon style={{ color: "#ffff" }} />
                     </IconButton>
                 </div>
                 <p className="text-small text-muted">

@@ -14,7 +14,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [value , setValue] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+  
 
 
   const signIn = (e) => {
@@ -23,7 +23,7 @@ function Login() {
     signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed in 
-    navigate("/")
+    navigate("/home")
     console.log(userCredential);
     // ...
   })
@@ -33,28 +33,6 @@ function Login() {
 
   }
 
-  const googleSignIn = () =>{
-    signInWithPopup(auth, provider)
-    .then((data) => {
-      setValue(data.user.email)
-      localStorage.setItem("email",data.user,email)
-      navigate("/")
-    })
-    .catch((error) => {
-      if (error.code === 'auth/popup-closed-by-user') {
-        setErrorMessage('Sign-in process was cancelled. Please try again.');
-        setTimeout(() => setErrorMessage(''), 3000);
-      } else {
-        console.error(error);
-        setErrorMessage('An error occurred during sign-in. Please try again.');
-      }
-    });
-  }
-
-  useEffect(()=>{
-    setValue(localStorage.getItem('email'))
-  })
-
 
   return (
     <>
@@ -63,13 +41,10 @@ function Login() {
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-              <div className="card bg-dark text-white" style={{ borderRadius: '1rem' }}>
+              <div className="card  text-white" style={{ backgroundColor: '#35B5AC', borderRadius: '1rem' }}>
                 <div className="card-body p-5 text-center">
                   <form onSubmit={signIn}>
                     <div className="mb-md-4 mt-md-4 pb-5">
-                    {errorMessage && <div className="alert alert-danger" role="alert">
-                        {errorMessage}
-                      </div>}
                       
                       <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
                       <p className="text-white-50 mb-5">Please enter your login and password!</p>
@@ -111,14 +86,6 @@ function Login() {
                         Login
                       </button>
 
-                      <div className="d-flex justify-content-center text-center mt-4 pt-1">
-
-                      <button className="btn btn-login text-uppercase fw-bold  btn-outline-light px-5 " 
-                      type="submit" onClick={googleSignIn}>
-                       Sign in with Google
-                      </button>
-
-                      </div>
                     </div>
                   </form>
 
