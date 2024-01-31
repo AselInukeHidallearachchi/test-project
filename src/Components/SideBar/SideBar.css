@@ -1,0 +1,50 @@
+/* SideBar.css */
+.sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 25vw; 
+  z-index: 1000; 
+  overflow-y: auto;
+  background: white;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px; 
+  border-bottom: 1px solid #e0e0e0; 
+}
+
+.sidebar-content {
+  padding: 20px; 
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 90px);
+}
+
+.spacer {
+  margin-top: auto;
+}
+
+.backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 990;
+}
+
+.backdrop.open {
+  display: block;
+}
+
+.close-button {
+  color: #00ccbc;
+}

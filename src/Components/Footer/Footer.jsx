@@ -70,8 +70,8 @@ const Footer = () => {
                         <InstagramIcon style={{ color: "#ffff" }} />
                     </IconButton>
                 </div>
-                <p className="text-small text-muted">
-                    © 2023 Deliveroo
+                <p className="footer-bottom-text">
+                    © 2024 Deliveroo
                 </p>
             </div>
         </footer>

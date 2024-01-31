@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import Navigation from '../Components/Navigation'
 import './styles.css';
 import { useState } from 'react';
-import {auth, app , provider } from "../firebase";
-import {signInWithEmailAndPassword , signInWithPopup} from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../Redux/userSlice';
+import Footer from '../Components/Footer/Footer';
 
 
 function Login() {
@@ -13,26 +14,21 @@ function Login() {
  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [value , setValue] = useState("");
+ 
+  const dispatch = useDispatch();
   
-
-
   const signIn = (e) => {
 
-     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
+    e.preventDefault();
+   
+    dispatch(login({
+      email:email,
+      password: password,
+      loggedIn:true,
+
+    }));
     navigate("/home")
-    console.log(userCredential);
-    // ...
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-
-  }
-
+ }
 
   return (
     <>
@@ -74,14 +70,6 @@ function Login() {
                           Password
                         </label>
                       </div>
-
-                      {/* Uncomment the following lines if you want to add a "Forgot password?" link */}
-                      {/* <p className="small mb-5 pb-lg-2">
-                        <a className="text-white-50" href="#!">
-                          Forgot password?
-                        </a>
-                      </p> */}
-
                       <button className="btn btn-outline-light btn-lg px-5" type="submit">
                         Login
                       </button>
@@ -100,6 +88,7 @@ function Login() {
           </div>
         </div>
       </section>
+      <Footer/>
     </>
   )
 }

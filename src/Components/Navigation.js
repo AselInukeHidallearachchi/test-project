@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -10,6 +11,7 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import PermIdentityAccountIcon from "@mui/icons-material/PermIdentityOutlined";
+import SideBar from './SideBar/SideBar.jsx';
 
 
 const svgImageStyle = {
@@ -24,14 +26,30 @@ const AccountBtnStyles = {
   color: "black",
   borderColor: "#e8ebeb",
   textTransform: "none",
+  fontSize: "1rem", 
+  padding: "6px 20px", 
+  fontFamily: "'IBM Plex Sans', sans-serif", 
+  fontWeight: "400", 
   "&:hover": { borderWidth: "1px", borderColor: "#dbdbdb" },
+  "&:active": {
+    borderColor: "#00ccbc",
+    boxShadow: "0 0 8px #00ccbc", 
+  },
 };
 
 const Navigation = () => {
 
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+  console.log('Sidebar was:', sidebarOpen);
+  setSidebarOpen(!sidebarOpen);
+};
+
+
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-      <Container style={{ paddingLeft: '8rem' }}>
+    <Navbar expand="lg" className="bg-white border-bottom">
+      <Container style={{ paddingLeft: '7rem' }}>
         <Navbar.Brand href="/home"><img
             src={DeliverooLogo}
             alt="Deliveroo Logo"
@@ -40,43 +58,9 @@ const Navigation = () => {
           </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto" style={{ flexGrow: 0.5 }}>
-            {/* <Nav.Link href="/home">Home</Nav.Link> */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                backgroundColor: "#f5f2f2",
-                borderRadius: 4,
-                
-                marginLeft: "5rem", 
-                marginRight: "5rem",
-                flexGrow: 1,
-                
-              }}
-            >
-              <IconButton>
-                <SearchIcon />
-              </IconButton>
-              <InputBase
-                placeholder="Search Tossed - St Martin's Lane"
-                style={{
-                  flexGrow: 1,
-                  marginLeft: 5,
-                  marginTop: 5,
-                  marginBottom: 5,
-                 
-                }}
-                inputProps={{
-                  style: {
-                    backgroundColor: "transparent",
-                    border: "",
-                    outline: "none",
-                  },
-                }}
-                
-              />
-            </div>
+          <Nav className="me-auto" style={{ flexGrow: 0.95 }}>
+           
+          <div style={{ flexGrow: 1 }}></div>
              <Authentication/>
 
              <Nav.Link >
@@ -86,15 +70,20 @@ const Navigation = () => {
                   startIcon={
                     <PermIdentityAccountIcon sx={{ color: "#00ccbc" }} />
                   }
+                  onClick={toggleSidebar}
                 >
                   Account
                 </Button>
               </Nav.Link>
+              
           </Nav>
         </Navbar.Collapse>
-      </Container>
+        {sidebarOpen && <SideBar isOpen={sidebarOpen} onClose={toggleSidebar} />}
+      </Container> 
     </Navbar>
+    
   );
 }
 
 export default Navigation;
+

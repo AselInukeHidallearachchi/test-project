@@ -15,30 +15,19 @@ import {
 } from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
-
-import {onAuthStateChanged , signOut} from "firebase/auth";
+import { logout, selectUser } from '../Redux/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Authentication = () => {
-    const [authenticatedUser , setAuthenticatedUser] = useState("");
 
-    useEffect( () => {
-      const listenAuth = onAuthStateChanged(auth, (user)=>{
-        if(user){
-            setAuthenticatedUser(user)
-        }else{
-          setAuthenticatedUser(null)
-        }
-      }
-      )
-      return () =>{
-        listenAuth()
-      }
-    },[])
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+    
 
-    const userSignOut = () =>{
-       signOut(auth).then(()=>{
-        console.log("user signed out")
-       }).catch(error => console.log("error"))
+    const userSignOut = (e) =>{
+      e.preventDefault();
+      dispatch(logout());
+
     }
 
     const buttonStyles = {
@@ -46,26 +35,32 @@ const Authentication = () => {
       color: "black",
       borderColor: "#e8ebeb",
       textTransform: "none",
+      fontSize: "1rem", 
+      padding: "6px 20px", 
+      fontFamily: "'IBM Plex Sans', sans-serif", 
+      fontWeight: "400", 
       "&:hover": { borderWidth: "1px", borderColor: "#dbdbdb" },
+      "&:active": {
+        borderColor: "#00ccbc",
+        boxShadow: "0 0 8px #00ccbc", 
+      },
     };
 
   return (
     <>
-    {authenticatedUser === null ? 
+    {user === null ? 
       <>
       <Nav.Link href="/">
               <Button
                     sx={buttonStyles}
                     variant="outlined"
                     startIcon={<HomeOutlinedIcon sx={{ color: "#00ccbc" }} />}
-                  > Sign Up or Log In
+                  > Sign up or log in
               </Button>
       </Nav.Link>
-
-      {/* <Nav.Link href="/signup">Sign Up</Nav.Link> */}
       </> : 
       <>
-      <Nav.Link href="/" onClick={userSignOut}>
+      <Nav.Link href="/" onClick={(e)=>userSignOut (e)}>
               <Button
                     sx={buttonStyles}
                     variant="outlined"
