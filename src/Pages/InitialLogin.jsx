@@ -31,27 +31,27 @@ export default function InitialLogin() {
     navigate("/login");
   };
 
-  const googleSignIn = () => {
-    signInWithPopup(auth, provider)
-      .then((data) => {
-        setValue(data.user.email);
-        localStorage.setItem("email", data.user.email);
-        console.log("user", data.user);
-        navigate("/home");
-      })
-      .catch((error) => {
-        if (error.code === "auth/popup-closed-by-user") {
-          alert("Sign-in process was cancelled. Please try again.");
-        } else {
-          console.error(error);
-          alert("An error occurred during sign-in. Please try again.");
-        }
-      });
-  };
+  // const googleSignIn = () => {
+  //   signInWithPopup(auth, provider)
+  //     .then((data) => {
+  //       setValue(data.user.email);
+  //       localStorage.setItem("email", data.user.email);
+  //       console.log("user", data.user);
+  //       navigate("/home");
+  //     })
+  //     .catch((error) => {
+  //       if (error.code === "auth/popup-closed-by-user") {
+  //         alert("Sign-in process was cancelled. Please try again.");
+  //       } else {
+  //         console.error(error);
+  //         alert("An error occurred during sign-in. Please try again.");
+  //       }
+  //     });
+  // };
 
-  useEffect(() => {
-    setValue(localStorage.getItem("email"));
-  });
+  // useEffect(() => {
+  //   setValue(localStorage.getItem("email"));
+  // });
 
   return (
     <Box>
@@ -104,7 +104,7 @@ export default function InitialLogin() {
                   "&:hover": { backgroundColor: "transparent" },
                   color: "#000000",
                 }}
-                onClick={googleSignIn}
+                // onClick={googleSignIn}
               >
                 Continue with Google
               </SocialLoginButton>

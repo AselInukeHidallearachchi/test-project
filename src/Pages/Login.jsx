@@ -8,29 +8,71 @@ import { useDispatch } from "react-redux";
 import { login } from "../Redux/userSlice";
 import Footer from "../Components/Footer/Footer";
 
+
 function Login() {
   const navigate = useNavigate("");
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const [isButtonActive, setIsButtonActive] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [showSignUpButton, setShowSignUpButton] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isPasswordCorrect, setIsPasswordCorrect] = useState(true);
+  const [showSignUp, setShowSignUp] = useState(false);
+ 
   
 
   const dispatch = useDispatch();
 
-  const signIn = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
 
-    dispatch(
-      login({
-        email: email,
-        password: password,
-        loggedIn: true,
-      })
-    );
-    navigate("/home");
+    if (password !== "1234") {
+      setIsPasswordCorrect(false);
+    } else {
+      dispatch(
+        login({
+          email: email,
+          password: password,
+          loggedIn: true,
+        })
+      );
+      navigate("/home");
+    }
+    
   };
 
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    setIsButtonActive(validateEmail(e.target.value));
+    setIsEmailValid(true);
+    setShowSignUpButton(false);
+  };
 
+  const validateEmail = (email) => {
+    const re = /\S+@\S+\.\S+/;
+    return re.test(email);
+  };
+
+  const handleContinue = () => {
+    if (email !== "user@gmail.com") {
+      setIsEmailValid(false);
+      setShowSignUpButton(true);
+      setIsButtonActive(false); 
+    } else {
+      setIsPasswordVisible(true);
+    }
+  };
+
+  const handleSignUpClick = (e) => {
+  
+    e.preventDefault();
+    navigate("/signup");
+  };
+
+  
   return (
     <Box>
       <Navigation />
@@ -69,10 +111,15 @@ function Login() {
             autoComplete="email"
             autoFocus
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleEmailChange}
             placeholder="e.g. name@example.com"
+            error={!isEmailValid}
+            helperText={!isEmailValid && "Email address Invalid"}
           />
-          {email === "user@gmail.com" && (
+          {/* conditionally render password text field and login now button based
+          correct entered email , if not  continue button will be disabled and sign up button will render */}
+          {isPasswordVisible ? (  
+            <>
             <TextField
               margin="normal"
               required
@@ -84,8 +131,10 @@ function Login() {
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              error={!isPasswordCorrect}
+              helperText={!isPasswordCorrect && "Password incorrect"}
             />
-          )}
+          
           <Button
             type="submit"
             fullWidth
@@ -104,12 +153,53 @@ function Login() {
                 backgroundColor: "#009da5",
               },
             }}
-            onClick={signIn}
-            disabled={!(email === "user@gmail.com" && password === "1234")} // Enable button only if email and password match
+            onClick={handleLogin}
+          >
+            Login Now
+          </Button>
+          </>
+           ):(
+            <>
+            <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#00ccbc",
+              color: "white",
+              padding: "14px 1px",
+              marginBottom: "8px",
+              fontWeight: "600",
+              textTransform: "none",
+            }}
+            fullWidth
+            onClick={handleContinue}
+            disabled={!isButtonActive}
           >
             Continue
           </Button>
-          <Button
+
+          {/* in order to render sign up button isPasswordVisible == false and showSignUpButton == true  */}
+
+          {showSignUpButton && ( 
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "#00ccbc",
+                color: "white",
+                padding: "14px 1px",
+                marginBottom: "8px",
+                fontWeight: "600",
+                textTransform: "none",
+              }}
+              fullWidth
+              onClick={handleSignUpClick}
+            >
+              Sign Up Now
+            </Button>
+          )}
+            
+            </>
+           )}
+           <Button
             fullWidth
             variant="text"
             sx={{
