@@ -1,96 +1,137 @@
-import React, { useEffect } from 'react'
-import Navigation from '../Components/Navigation'
-import './styles.css';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { login } from '../Redux/userSlice';
-import Footer from '../Components/Footer/Footer';
-
+import React, { useEffect } from "react";
+import Navigation from "../Components/Navigation";
+import { Box, Container, Typography, TextField, Button } from "@mui/material";
+import "./styles.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../Redux/userSlice";
+import Footer from "../Components/Footer/Footer";
 
 function Login() {
+  const navigate = useNavigate("");
 
-  const navigate = useNavigate('');
- 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
- 
-  const dispatch = useDispatch();
   
+
+  const dispatch = useDispatch();
+
   const signIn = (e) => {
-
     e.preventDefault();
-   
-    dispatch(login({
-      email:email,
-      password: password,
-      loggedIn:true,
 
-    }));
-    navigate("/home")
- }
+    dispatch(
+      login({
+        email: email,
+        password: password,
+        loggedIn: true,
+      })
+    );
+    navigate("/home");
+  };
+
 
   return (
-    <>
+    <Box>
       <Navigation />
-      <section className="vh-100 gradient-custom">
-        <div className="container py-5 h-100">
-          <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-              <div className="card  text-white" style={{ backgroundColor: '#35B5AC', borderRadius: '1rem' }}>
-                <div className="card-body p-5 text-center">
-                  <form onSubmit={signIn}>
-                    <div className="mb-md-4 mt-md-4 pb-5">
-                      
-                      <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
-                      <p className="text-white-50 mb-5">Please enter your login and password!</p>
-
-                      <div className="form-outline form-white mb-4">
-                        <input
-                          type="email"
-                          id="typeEmailX"
-                          className="form-control form-control-lg"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                        />
-                        <label className="form-label" htmlFor="typeEmailX">
-                          Email
-                        </label>
-                      </div>
-
-                      <div className="form-outline form-white mb-4">
-                        <input
-                          type="password"
-                          id="typePasswordX"
-                          className="form-control form-control-lg"
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <label className="form-label" htmlFor="typePasswordX">
-                          Password
-                        </label>
-                      </div>
-                      <button className="btn btn-outline-light btn-lg px-5" type="submit">
-                        Login
-                      </button>
-
-                    </div>
-                  </form>
-
-                  <div>
-                    <p className="mb-0">
-                      Don't have an account? <a href="/signup" className="text-white-50 fw-bold">Sign Up</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <Footer/>
-    </>
-  )
+      <Container maxWidth="xs">
+        <Box
+          sx={{
+            marginTop: 8,
+            marginBottom: 8,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Typography
+            component="h1"
+            sx={{ mt: 2, mb: 2, fontSize: "20px", fontWeight: "600" }}
+          >
+            Sign up or log in
+          </Typography>
+          <Typography
+            sx={{
+              mb: -1,
+              fontSize: "15px",
+              fontSize: "1rem",
+              fontFamily: "'IBM Plex Sans', sans-serif",
+              fontWeight: "400",
+            }}
+          >
+            Email address
+          </Typography>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="e.g. name@example.com"
+          />
+          {email === "user@gmail.com" && (
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          )}
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{
+              mt: 3,
+              mb: 2,
+              backgroundColor: "#00ccbc",
+              color: "white",
+              borderRadius: "5px",
+              padding: "10px 20px",
+              textTransform: "none",
+              fontSize: "15px",
+              fontWeight: "bold",
+              "&:hover": {
+                backgroundColor: "#009da5",
+              },
+            }}
+            onClick={signIn}
+            disabled={!(email === "user@gmail.com" && password === "1234")} // Enable button only if email and password match
+          >
+            Continue
+          </Button>
+          <Button
+            fullWidth
+            variant="text"
+            sx={{
+              mb: 2,
+              backgroundColor: "white",
+              color: "#00ccbc",
+              borderRadius: "5px",
+              border: "1px solid #dedddc",
+              padding: "10px 20px",
+              textTransform: "none",
+              fontSize: "1rem",
+              fontFamily: "'IBM Plex Sans', sans-serif",
+              fontWeight: "400",
+            }}
+          >
+            Forgot password?
+          </Button>
+        </Box>
+      </Container>
+      <Footer />
+    </Box>
+  );
 }
 
-export default Login
+export default Login;
