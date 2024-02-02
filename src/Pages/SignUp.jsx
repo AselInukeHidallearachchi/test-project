@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Box, Button, Container, Typography, TextField } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import Navigation from "../Components/Navigation";
 import Footer from "../Components/Footer/Footer";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({ name: "", email: "", password: "" });
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;

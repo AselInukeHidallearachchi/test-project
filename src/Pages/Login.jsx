@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {  } from "react";
 import Navigation from "../Components/Navigation";
 import { Box, Container, Typography, TextField, Button } from "@mui/material";
 import "./styles.css";
@@ -20,7 +20,7 @@ function Login() {
   const [showSignUpButton, setShowSignUpButton] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isPasswordCorrect, setIsPasswordCorrect] = useState(true);
-  const [showSignUp, setShowSignUp] = useState(false);
+  //const [showSignUp, setShowSignUp] = useState(false);
  
   
 
@@ -94,7 +94,6 @@ function Login() {
           <Typography
             sx={{
               mb: -1,
-              fontSize: "15px",
               fontSize: "1rem",
               fontFamily: "'IBM Plex Sans', sans-serif",
               fontWeight: "400",

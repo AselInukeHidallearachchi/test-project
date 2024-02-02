@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {  } from "react";
 
 import { Box, Container, Button, Typography, Link } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
@@ -8,8 +8,8 @@ import GoogleSvgIcon from "../Assets/google.f4674e20.svg";
 import Navigation from "../Components/Navigation";
 import { useNavigate } from "react-router-dom";
 
-import { auth, provider } from "../firebase";
-import { signInWithPopup } from "firebase/auth";
+// import { auth, provider } from "../firebase";
+// import { signInWithPopup } from "firebase/auth";
 import Footer from "../Components/Footer/Footer";
 
 const SocialLoginButton = ({ children, icon, sx, onClick }) => (
@@ -24,7 +24,7 @@ const SocialLoginButton = ({ children, icon, sx, onClick }) => (
 );
 
 export default function InitialLogin() {
-  const [value, setValue] = useState("");
+  //const [value, setValue] = useState("");
   let navigate = useNavigate();
 
   const handleEmailLoginClick = () => {
