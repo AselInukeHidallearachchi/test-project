@@ -1,18 +1,6 @@
-import { useState , useEffect} from 'react';
-import {auth, app } from "../firebase";
+
 import Nav from 'react-bootstrap/Nav';
-import {
-  AppBar,
-  Box,
-  Button,
-  InputBase,
-  Toolbar,
-  styled,
-  Grid,
-  IconButton,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
+import {Button } from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
 import { logout, selectUser } from '../Redux/userSlice';
@@ -28,6 +16,7 @@ const Authentication = () => {
 
     const userSignOut = (e) =>{
       e.preventDefault();
+      console.log("user",user);
       dispatch(logout());
       navigate("/")
 

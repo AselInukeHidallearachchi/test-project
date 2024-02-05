@@ -4,14 +4,9 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Authentication from './Authentication';
 import DeliverooLogo from '../Assets/logo-teal.svg';
-import {
-  InputBase,
-  IconButton,
-  Button,
-} from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import PermIdentityAccountIcon from "@mui/icons-material/PermIdentityOutlined";
 import SideBar from './SideBar/SideBar.jsx';
+import { Button} from "@mui/material";
 
 
 const svgImageStyle = {
@@ -37,6 +32,7 @@ const AccountBtnStyles = {
   },
 };
 
+
 const Navigation = () => {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -46,10 +42,19 @@ const Navigation = () => {
   setSidebarOpen(!sidebarOpen);
 };
 
+ // Extended inline style for sticky Navbar with bg-white and border-bottom
+ const stickyNavbarStyle = {
+  position: 'sticky',
+  top: 0,
+  zIndex: 1020, // Ensure it's above other content, adjust if necessary
+  backgroundColor: 'white', // This is your bg-white equivalent
+  borderBottom: '1px solid #d0dbd7', // Add border bottom; adjust color as needed
+};
+
 
   return (
-    <Navbar expand="lg" className="bg-white border-bottom">
-      <Container style={{ paddingLeft: '7rem' }}>
+    <Navbar expand="lg"  style={stickyNavbarStyle} >
+      <Container style={{ paddingLeft: '6.5rem'}}>
         <Navbar.Brand href="/home"><img
             src={DeliverooLogo}
             alt="Deliveroo Logo"

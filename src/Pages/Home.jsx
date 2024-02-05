@@ -2,6 +2,7 @@ import React from 'react'
 import Navigation from '../Components/Navigation'
 import Footer from '../Components/Footer/Footer.jsx'
 import RestaurantInfoBanner from '../Components/Restaurant/RestaurantInfoBanner.jsx'
+import MenuList from '../Components/MenuList/MenuList.jsx'
 
 
 function Home() {
@@ -9,7 +10,8 @@ function Home() {
     <>
       <Navigation/>
         <RestaurantInfoBanner />
-          <h1>Home</h1>
+        <MenuList/>
+          {/* <p>Home</p> */}
       <Footer/>
     </>
   )
