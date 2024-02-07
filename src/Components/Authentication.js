@@ -5,11 +5,11 @@ import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
 import { logout, selectUser } from '../Redux/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const Authentication = () => {
 
-  const navigate = useNavigate('');
+  // const navigate = useNavigate('');
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
     
@@ -18,7 +18,7 @@ const Authentication = () => {
       e.preventDefault();
       console.log("user",user);
       dispatch(logout());
-      navigate("/")
+      // navigate("/") private route will navigate user 
 
     }
 
