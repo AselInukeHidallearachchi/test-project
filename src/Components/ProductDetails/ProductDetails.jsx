@@ -4,13 +4,17 @@ import SubtractIcon from '@mui/icons-material/RemoveCircleOutline';
 
 import './ProductDetails.css'
 
-const ProductDetails = () => {
+const ProductDetails = (props) => {
+
+     // Destructure props to extract the specific values needed
+     const { title, description, price, imageURL } = props;
+
     return (
         <div className="ProductDetails">
             <div className="product-image-container">
-                <img className='product-image' src='https://images.unsplash.com/photo-1558961363-fa8fdf82db35?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' alt="" />
+                <img className='product-image' src={imageURL} alt={title}/>
             </div>
-            <h1 className='product-title'>Misfits cookies and cream</h1>
+            <h1 className='product-title'>{title}</h1>
             <p className='product-description'>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo ipsam eos dolorum placeat. Quas amet dignissimos, hic aliquam, distinctio voluptatum accusantium tenetur eum sapiente debitis autem laborum. Cupiditate, quisquam magni at, sapiente ratione earum, culpa totam reiciendis dolorem sequi ipsa!
             </p>

@@ -104,7 +104,7 @@ const RestaurantInfoBanner = () => {
                 <Box
                   sx={{
                     position: 'absolute',
-                    top: '550px',
+                    top: '55%',
                     right: '10px',
                   }}
                 >

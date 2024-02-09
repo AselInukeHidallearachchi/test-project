@@ -48,3 +48,11 @@
 .close-button {
   color: #00ccbc;
 }
+
+/* Responsive adjustments for mobile screens */
+@media (max-width: 400px) {
+  .sidebar {
+    width: 75vw; 
+  }
+  
+}

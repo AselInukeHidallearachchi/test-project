@@ -6,6 +6,7 @@ import ShoppingBasketOutlinedIcon from '@mui/icons-material/ShoppingBasketOutlin
 import { data as DummyData } from '../../data';
 import { createRef, useState } from 'react';
 
+
 const MenuList = () => {
     let data = DummyData; // Assuming data is imported and its structure is known
     const [currentCategory, setCurrentCategory] = useState('');
@@ -46,12 +47,12 @@ const MenuList = () => {
                         label={bundle.categoryTitle}
                         color={currentCategory === bundle.categoryTitle ? 'primary' : 'default'}
                         className={currentCategory === bundle.categoryTitle ? 'selected' : 'not-selected'}
-                        onClick={scrollTo}
+                        onClick={(e) => scrollTo(e)}
                     />
                 ))}
             </div>
             <div className="menu-list__container">
-                <div className="container  m-3">
+                <div className="container  m-2">
                     <p className='text-small' style={{ paddingTop: '1rem',color: '#888' }}>Adults need around 2000 kcal a day</p>
                     {data.map((bundle, index) => (
                         <MenuListCategory

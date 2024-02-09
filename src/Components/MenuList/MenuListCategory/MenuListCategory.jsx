@@ -5,19 +5,18 @@ import './MenuListCategory.css';
 const MenuListCategory = (props, ref) => {
     const { categoryTitle, items, handleScroll, isScrolling } = props;
 
-  
+    const intersectionCallback = ([entry], observer) => {
+        console.log(observer);
+        handleScroll(entry.isIntersecting, entry.target.getAttribute('data-name'));
+    };
 
     useEffect(() => {
 
-        const intersectionCallback = ([entry], observer) => {
-            console.log(observer);
-            handleScroll(entry.isIntersecting, entry.target.getAttribute('data-name'));
-        };
+        
         
         const observer = new IntersectionObserver(intersectionCallback, {
             rootMargin: '-180px 0px -30% 0px',
-        },{
-            threshold:1,
+            // threshold:0.25,
         });
 
         if (isScrolling) {
@@ -30,7 +29,7 @@ const MenuListCategory = (props, ref) => {
         return () => {
             observer.disconnect();
         };
-    }, [isScrolling, ref, handleScroll]);
+    }, [isScrolling]);
 
     return (
         <div className="MenuListCategory" ref={ref} data-name={categoryTitle}>
