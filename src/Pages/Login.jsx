@@ -1,5 +1,5 @@
 import React, {  } from "react";
-import Navigation from "../Components/Navigation";
+import Navigation from "../Components/Navigation/Navigation";
 import { Box, Container, Typography, TextField, Button } from "@mui/material";
 import "./styles.css";
 import { useState } from "react";

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Authentication from './Authentication';
-import DeliverooLogo from '../Assets/logo-teal.svg';
+import Authentication from './Authentication.js';
+import DeliverooLogo from '../../Assets/logo-teal.svg';
 import PermIdentityAccountIcon from "@mui/icons-material/PermIdentityOutlined";
-import SideBar from './SideBar/SideBar.jsx';
+import SideBar from '../SideBar/SideBar.jsx';
 import { Button} from "@mui/material";
 
 

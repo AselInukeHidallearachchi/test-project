@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Button, Container, Typography, TextField } from "@mui/material";
 //import { useNavigate } from "react-router-dom";
-import Navigation from "../Components/Navigation";
+import Navigation from "../Components/Navigation/Navigation";
 import Footer from "../Components/Footer/Footer";
 
 const SignUp = () => {

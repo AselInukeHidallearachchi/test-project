@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import {Button } from "@mui/material";
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 
-import { logout, selectUser } from '../Redux/userSlice';
+import { logout, selectUser } from '../../Redux/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
 

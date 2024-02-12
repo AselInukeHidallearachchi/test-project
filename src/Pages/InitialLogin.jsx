@@ -5,7 +5,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import MailIcon from "@mui/icons-material/Mail";
 import AppleIcon from "@mui/icons-material/Apple";
 import GoogleSvgIcon from "../Assets/google.f4674e20.svg";
-import Navigation from "../Components/Navigation";
+import Navigation from "../Components/Navigation/Navigation";
 import { useNavigate } from "react-router-dom";
 
 // import { auth, provider } from "../firebase";

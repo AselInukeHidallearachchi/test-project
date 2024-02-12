@@ -88,6 +88,9 @@
     .container.p-2 {
       padding: 1rem;
     }
+    .container.m-2 {
+      margin: -10px !important; /* You can adjust the margin value as needed */
+    }
   }
   
   @media (max-width: 1600px) {
